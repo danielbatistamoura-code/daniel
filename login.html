@@ -96,4 +96,34 @@
             </div>
 
             <p style="text-align: center; margin-top: 1.5rem; font-size: 0.8125rem; color: var(--text-secondary);">
-                &copy; 2026 DayNight Admin. Designed by <a href="https://www.templatemo.com" target="_blank" rel="nofollow" style="color: var
+                &copy; 2026 DayNight Admin. Designed by <a href="https://www.templatemo.com" target="_blank" rel="nofollow" style="color: var(--accent);">TemplateMo</a>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function initGoogleSignIn() {
+            gapi.load('auth2', function() {
+                gapi.auth2.init({
+                    client_id: 'YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com'  // Substitua pelo seu client ID do Google
+                });
+            });
+        }
+
+        document.getElementById("google-btn").onclick = function() {
+            gapi.auth2.getAuthInstance().signIn().then(function(googleUser) {
+                var profile = googleUser.getBasicProfile();
+                console.log("ID: " + profile.getId()); 
+                console.log('Full Name: ' + profile.getName());
+                console.log('Given Name: ' + profile.getGivenName());
+                console.log('Family Name: ' + profile.getFamilyName());
+                console.log("Image URL: " + profile.getImageUrl());
+                console.log("Email: " + profile.getEmail());
+                window.location.href = "index.html";  // Redireciona após login
+            });
+        };
+
+        window.onload = initGoogleSignIn;
+    </script>
+</body>
+</html>
